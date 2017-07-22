@@ -7,6 +7,7 @@ import java.util.Locale;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
+import org.crama.tropicalgarden.config.GameplayProperties;
 import org.crama.tropicalgarden.errors.GardenException;
 import org.crama.tropicalgarden.errors.ObjectNotFoundException;
 import org.crama.tropicalgarden.statistics.UserStatistics;
@@ -15,7 +16,6 @@ import org.crama.tropicalgarden.users.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.scheduling.annotation.Async;
@@ -38,8 +38,8 @@ public class GardenService {
 	@Autowired
 	private UserStatisticsService userStatisticsService;
 	
-	@Value("${garden.updateTimeMin}")
-	private static int updateTimeMin;
+	@Autowired
+	private GameplayProperties gameplayProperties;
 	
 	private static final Logger logger = LoggerFactory.getLogger(GardenService.class);
 
@@ -95,7 +95,7 @@ public class GardenService {
 		
 		UserStatistics userStats = userStatisticsService.getStatistics(user);
 		
-		LocalDateTime time = LocalDateTime.now().minusMinutes(updateTimeMin);
+		LocalDateTime time = LocalDateTime.now().minusMinutes(gameplayProperties.getUpdateTimeMin());
 		LocalDateTime lastCollect = userStats.getLastFruitCollection();
 		if (lastCollect != null && lastCollect.isAfter(time)) {
 			
@@ -140,7 +140,7 @@ public class GardenService {
 	
 	
 	@Transactional
-	@Scheduled(fixedRateString  = "${garden.updateTime.in.milliseconds}")
+	@Scheduled(fixedRateString  = "${tg.gameplay.update-time-milliseconds}")
 	@Async
     public void printMessage() {
 		

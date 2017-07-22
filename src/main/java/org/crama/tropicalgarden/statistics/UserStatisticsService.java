@@ -2,9 +2,9 @@ package org.crama.tropicalgarden.statistics;
 
 import java.time.LocalDateTime;
 
+import org.crama.tropicalgarden.config.GameplayProperties;
 import org.crama.tropicalgarden.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,8 +13,8 @@ public class UserStatisticsService {
 	@Autowired
 	private UserStatisticsRepository userStatisticsRepository;
 	
-	@Value("${gameplay.balance-for-buying}")
-	private long balanceForBuying;
+	@Autowired
+	private GameplayProperties gameplayProperties;
 	
 	public UserStatistics getStatistics(User user) {
 		
@@ -25,7 +25,7 @@ public class UserStatisticsService {
 
 	public void createUserStats(User user) {
 		
-		UserStatistics userStats = new UserStatistics(user, LocalDateTime.now(), balanceForBuying);
+		UserStatistics userStats = new UserStatistics(user, LocalDateTime.now(), gameplayProperties.getBalanceForBuying());
 		userStatisticsRepository.save(userStats);
 		
 	}

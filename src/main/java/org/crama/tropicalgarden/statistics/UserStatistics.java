@@ -22,11 +22,10 @@ public class UserStatistics implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="ID", nullable=false)
-	private int id;
+	private long id;
 	
 	@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY) 
-	@JoinColumn(name = "USER_ID", nullable = false)
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 	
 	private LocalDateTime registrationDate;
@@ -73,11 +72,11 @@ public class UserStatistics implements Serializable {
 
 
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

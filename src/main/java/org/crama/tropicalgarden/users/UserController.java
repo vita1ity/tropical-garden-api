@@ -3,9 +3,7 @@ package org.crama.tropicalgarden.users;
 import java.util.Locale;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Null;
 
-import org.crama.tropicalgarden.errors.MessageException;
 import org.crama.tropicalgarden.errors.ObjectNotFoundException;
 import org.crama.tropicalgarden.errors.RegistrationException;
 import org.crama.tropicalgarden.errors.UserNotAuthenticatedException;
@@ -14,7 +12,6 @@ import org.crama.tropicalgarden.statistics.UserStatisticsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.http.HttpStatus;
@@ -38,9 +35,6 @@ public class UserController {
 	
 	@Autowired
 	private VerificationService verificationService;
-	
-	@Autowired
-	ApplicationEventPublisher eventPublisher;
 	
 	@Autowired
     private MessageSource messages;
@@ -67,9 +61,7 @@ public class UserController {
 		userStatisticsService.createUserStats(user);
 		dailyStatsService.createDailyStats(user);
 		
-        eventPublisher.publishEvent(new UserRegisteredEvent(registered));
-		
-		return true;
+		return registered != null;
         
     }
 	

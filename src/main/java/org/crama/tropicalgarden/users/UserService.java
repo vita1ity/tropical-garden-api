@@ -37,7 +37,7 @@ public class UserService {
 	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	private VerificationTokenRepository verificationTokenRepository;
+    private VerificationService verificationService;
 	
 	@Autowired
     private MessageSource messages;
@@ -54,7 +54,10 @@ public class UserService {
 		
 		User savedUser = userRepository.save(user);
 		
-		//mailService.sendEmailVerificationLink(user);
+		String token = UUID.randomUUID().toString();
+        verificationService.createVerificationToken(user, token);
+        
+        mailService.sendEmailVerificationLink(user);
 		
 		return savedUser;
 	

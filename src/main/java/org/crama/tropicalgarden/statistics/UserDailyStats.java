@@ -24,7 +24,6 @@ public class UserDailyStats implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(nullable=false)
 	private int id;
 	
 	@JsonIgnore
