@@ -6,26 +6,26 @@ public class ValidationError implements Serializable {
 	
 	private static final long serialVersionUID = -4165803156925537585L;
 
-	private String fields;
+	private String field;
 	
 	private String errorCode;
 	
 	private String errorMessage;
 	
 	
-	public ValidationError(String fields, String errorCode, String errorMessage) {
+	public ValidationError(String field, String errorCode, String errorMessage) {
 		super();
-		this.fields = fields;
+		this.field = field;
 		this.errorCode = errorCode;
 		this.errorMessage = errorMessage;
 	}
 
-	public String getFields() {
-		return fields;
+	public String getfield() {
+		return field;
 	}
 
-	public void setFields(String fields) {
-		this.fields = fields;
+	public void setfield(String field) {
+		this.field = field;
 	}
 
 	public String getErrorCode() {
@@ -46,7 +46,7 @@ public class ValidationError implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ValidationError [fields=" + fields + ", errorCode=" + errorCode + ", errorMessage=" + errorMessage
+		return "ValidationError [field=" + field + ", errorCode=" + errorCode + ", errorMessage=" + errorMessage
 				+ "]";
 	}
 

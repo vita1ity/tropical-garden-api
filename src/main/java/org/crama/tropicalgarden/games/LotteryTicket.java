@@ -29,13 +29,14 @@ public class LotteryTicket implements Serializable {
 	private User user;
 	
 	@Column(nullable = false)
-	private long lotteryNumber;
-	
-	@Column(nullable = false)
 	private long ticketNumber;
 	
 	@Column(nullable = false)
 	private LocalDateTime ticketBoughtTime;
+	
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY) 
+	@JoinColumn(name = "lottery_id", nullable = false)
+	private Lottery lottery;
 	
 	private long wonAmount;
 
@@ -55,12 +56,12 @@ public class LotteryTicket implements Serializable {
 		this.user = user;
 	}
 
-	public long getLotteryNumber() {
-		return lotteryNumber;
+	public Lottery getLottery() {
+		return lottery;
 	}
 
-	public void setLotteryNumber(long lotteryNumber) {
-		this.lotteryNumber = lotteryNumber;
+	public void setLottery(Lottery lottery) {
+		this.lottery = lottery;
 	}
 
 	public long getTicketNumber() {

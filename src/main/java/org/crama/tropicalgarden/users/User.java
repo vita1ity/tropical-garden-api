@@ -53,6 +53,7 @@ public class User implements Serializable {
 	
 	private GameplayMode gameplayMode;
 
+	
 	public long getId() {
 		return id;
 	}
@@ -133,13 +134,12 @@ public class User implements Serializable {
 	public void setGameplayMode(GameplayMode gameplayMode) {
 		this.gameplayMode = gameplayMode;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", email=" + email + ", role=" + role + ", userState="
 				+ userState + ", isOnline=" + isOnline + ", gameplayPreference=" + gameplayMode + "]";
 	}
-	
 	
 	
 }

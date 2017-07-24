@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class GameplayProperties {
 
 	//private long balanceForBuying = 1000;
-	private long balanceForBuying;
+	private long balanceForBuying; 
 	
 	private int updateTimeMin = 10;
 	

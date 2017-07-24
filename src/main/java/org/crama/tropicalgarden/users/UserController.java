@@ -50,6 +50,7 @@ public class UserController {
 	    UserRegisterValidator validator = new UserRegisterValidator();
 	    validator.setUserService(userService);
 		binder.setValidator(validator);
+		
 	}
 	
 	@RequestMapping(value="/api/user/register", method=RequestMethod.PUT)

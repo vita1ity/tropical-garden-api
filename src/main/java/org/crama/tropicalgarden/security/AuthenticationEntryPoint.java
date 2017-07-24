@@ -23,6 +23,7 @@ public class AuthenticationEntryPoint extends BasicAuthenticationEntryPoint {
             final HttpServletResponse response, 
             final AuthenticationException authException) throws IOException, ServletException {
         //Authentication failed, send error response.
+    	//TODO generate appropriate JSON response
     	
     	logger.info(authException.toString() + ", exception message: " + authException.getMessage());
     	
