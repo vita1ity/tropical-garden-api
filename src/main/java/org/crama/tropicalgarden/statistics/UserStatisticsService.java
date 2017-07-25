@@ -34,4 +34,5 @@ public class UserStatisticsService {
 		userStatisticsRepository.save(stats);
 	}
 
+
 }

@@ -40,6 +40,18 @@ public class LotteryTicket implements Serializable {
 	
 	private long wonAmount;
 
+	public LotteryTicket() {
+		super();
+	}
+
+	public LotteryTicket(User user, long ticketNumber, LocalDateTime ticketBoughtTime, Lottery lottery) {
+		super();
+		this.user = user;
+		this.ticketNumber = ticketNumber;
+		this.ticketBoughtTime = ticketBoughtTime;
+		this.lottery = lottery;
+	}
+
 	public long getId() {
 		return id;
 	}

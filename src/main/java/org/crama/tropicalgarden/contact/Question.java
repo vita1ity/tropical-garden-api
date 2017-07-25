@@ -33,7 +33,7 @@ public class Question implements Serializable {
 	@Column(nullable = false)
 	private String text;
 	
-	//if null use email from user object
+	//if null use email from user object	
 	@Column(nullable = true)
 	private String callBackEmail;
 

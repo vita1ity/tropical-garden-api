@@ -39,6 +39,19 @@ public class Lottery implements Serializable {
 	@Column(nullable = false)
 	private LotteryStatus lotteryStatus;
 
+	public Lottery() {
+		super();
+	}
+
+	public Lottery(LocalDate date, double bank) {
+		
+		super();
+		this.date = date;
+		this.bank = bank;
+		this.lotteryStatus = LotteryStatus.OPEN;
+				
+	}
+
 	public long getId() {
 		return id;
 	}

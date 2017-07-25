@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.crama.tropicalgarden.errors.ObjectNotFoundException;
 import org.crama.tropicalgarden.errors.RegistrationException;
 import org.crama.tropicalgarden.errors.UserNotAuthenticatedException;
+import org.crama.tropicalgarden.referrals.PartnerService;
 import org.crama.tropicalgarden.statistics.DailyStatsService;
 import org.crama.tropicalgarden.statistics.UserStatisticsService;
 import org.slf4j.Logger;
@@ -45,6 +46,9 @@ public class UserController {
 	@Autowired
 	private DailyStatsService dailyStatsService;
 	
+	@Autowired
+	private PartnerService partnerService;
+	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 	    UserRegisterValidator validator = new UserRegisterValidator();
@@ -55,12 +59,27 @@ public class UserController {
 	
 	@RequestMapping(value="/api/user/register", method=RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.CREATED)
-    public boolean register(@Valid @RequestBody User user, WebRequest request) {
+    public boolean register(@RequestParam(required = false) Long ref, @Valid @RequestBody User user, WebRequest request) {
 		
 		User registered = userService.saveUser(user);
 		
 		userStatisticsService.createUserStats(user);
 		dailyStatsService.createDailyStats(user);
+		
+		//add partner
+		if (ref != null) {
+			try {
+				
+				User referral = userService.getUserById(ref);
+				partnerService.savePartner(referral, user);
+				
+			} catch (ObjectNotFoundException e) {
+				
+				logger.error("Can't find referral with id: " + ref + ". Partner is not created");
+			}
+				
+			
+		}
 		
 		return registered != null;
         

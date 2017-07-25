@@ -14,6 +14,8 @@ public class GameplayProperties {
 	
 	private long updateTimeMilliseconds = 600000;
 	
+	private int bank = 1000;
+	
 
 	public long getBalanceForBuying() {
 		return balanceForBuying;
@@ -37,6 +39,14 @@ public class GameplayProperties {
 
 	public void setUpdateTimeMilliseconds(long updateTimeMilliseconds) {
 		this.updateTimeMilliseconds = updateTimeMilliseconds;
+	}
+
+	public int getBank() {
+		return bank;
+	}
+
+	public void setBank(int bank) {
+		this.bank = bank;
 	}
 	
 	

@@ -22,14 +22,22 @@ public class Partner implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	//main user
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY) 
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 	
+	//main user partner
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY) 
 	@JoinColumn(name = "partner_id", nullable = false)
 	private User partner;
 
+	public Partner(User user, User partner) {
+		super();
+		this.user = user;
+		this.partner = partner;
+	}
+	
 	public long getId() {
 		return id;
 	}

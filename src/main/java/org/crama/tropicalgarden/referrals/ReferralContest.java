@@ -1,4 +1,4 @@
-package org.crama.tropicalgarden.contests;
+package org.crama.tropicalgarden.referrals;
 
 import java.io.Serializable;
 import java.time.LocalDate;

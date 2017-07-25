@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 
 import org.crama.tropicalgarden.users.User;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class UserNews implements Serializable {
 
@@ -22,6 +24,7 @@ public class UserNews implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY) 
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
