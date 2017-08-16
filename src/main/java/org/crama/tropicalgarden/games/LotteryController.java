@@ -48,4 +48,28 @@ public class LotteryController {
         
     }
 	
+	@RequestMapping(value="/api/games/lottery/get-open-tickets", method=RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public List<LotteryTicket> getOpenLotteryTickets() throws UserNotAuthenticatedException {
+		
+		Lottery lottery = lotteryService.getOpenLottery();
+		List<LotteryTicket> lotteryTickets = lotteryService.getLotteryTickets(lottery);
+		
+		return lotteryTickets;
+		 
+	}
+	
+	@RequestMapping(value="//api/games/lottery/get-played", method=RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public List<Lottery> getPlayedLottery() throws UserNotAuthenticatedException {
+		
+		Lottery playedLottery = lotteryService.getPlayedLottery();
+		List<Lottery> playedLotteries = lotteryService.getPlayedLotteries(playedLottery);
+		
+		return playedLotteries;
+		
+	}
+	
+	
+	
 }

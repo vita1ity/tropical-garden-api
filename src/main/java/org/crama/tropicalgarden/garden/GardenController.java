@@ -5,7 +5,6 @@ import java.util.List;
 import org.crama.tropicalgarden.errors.GardenException;
 import org.crama.tropicalgarden.errors.ObjectNotFoundException;
 import org.crama.tropicalgarden.errors.UserNotAuthenticatedException;
-import org.crama.tropicalgarden.statistics.UserStatisticsService;
 import org.crama.tropicalgarden.users.User;
 import org.crama.tropicalgarden.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

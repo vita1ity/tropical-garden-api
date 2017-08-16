@@ -2,6 +2,7 @@ package org.crama.tropicalgarden.games;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -104,7 +105,24 @@ public class LotteryService {
 		
 		createLottery();
 	}
-
 	
+	public Lottery getPlayedLottery() {
+		
+		Lottery playedLottery = lotteryRepository.findByLotteryStatus(LotteryStatus.PLAYED);
+		
+		return playedLottery;
+	}
+
+	public List<Lottery> getPlayedLotteries(Lottery playedLottery) {
+		
+		List<Lottery> playedLotteries = new ArrayList<Lottery>();
+		
+		if (playedLottery != null) {
+			
+			playedLotteries.add(playedLottery);
+		}	
+		
+		return playedLotteries;
+	}
 	
 }
