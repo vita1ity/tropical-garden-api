@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 
 import org.crama.tropicalgarden.users.User;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class LotteryTicket implements Serializable {
 
@@ -34,6 +36,7 @@ public class LotteryTicket implements Serializable {
 	@Column(nullable = false)
 	private LocalDateTime ticketBoughtTime;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY) 
 	@JoinColumn(name = "lottery_id", nullable = false)
 	private Lottery lottery;

@@ -32,9 +32,9 @@ public class LotteryService {
 	
 	public Lottery getOpenLottery() {
 		
-		Lottery lottery = lotteryRepository.findByLotteryStatus(LotteryStatus.OPEN);
+		List<Lottery> lottery = lotteryRepository.findByLotteryStatus(LotteryStatus.OPEN);
 		
-		return lottery;
+		return lottery.get(0);
 	}
 
 	public List<LotteryTicket> getLotteryTickets(Lottery lottery) {
@@ -106,23 +106,13 @@ public class LotteryService {
 		createLottery();
 	}
 	
-	public Lottery getPlayedLottery() {
+	public List<Lottery> getPlayedLotteries() {
 		
-		Lottery playedLottery = lotteryRepository.findByLotteryStatus(LotteryStatus.PLAYED);
+		List<Lottery> playedLottery = lotteryRepository.findByLotteryStatus(LotteryStatus.PLAYED);
 		
 		return playedLottery;
 	}
 
-	public List<Lottery> getPlayedLotteries(Lottery playedLottery) {
-		
-		List<Lottery> playedLotteries = new ArrayList<Lottery>();
-		
-		if (playedLottery != null) {
-			
-			playedLotteries.add(playedLottery);
-		}	
-		
-		return playedLotteries;
-	}
+	
 	
 }
